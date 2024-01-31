@@ -1,0 +1,36 @@
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+
+  h2:
+    console:
+      enabled: true
+
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          google:
+#            client-id: 880757649782-0vcbqh5hc19f9k4j70973b6sel7erlgv.apps.googleusercontent.com
+#            client-secret: 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
+#            scope:
+#              - email
+#              - profile
+
+jwt:
+  issuer: eogh7204@gmail.com
+  secret-key: token-secret-key
+
+server:
+  servlet:
+    jsp:
+      init-parameters:
+        development: true
