@@ -4,7 +4,6 @@ import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import me.parkdaiho.config.PrincipalDetails;
 import me.parkdaiho.domain.User;
-import me.parkdaiho.exception.UserNotFoundException;
 import me.parkdaiho.repository.UserRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -50,7 +49,7 @@ public class TokenProvider {
 
     public Authentication getAuthentication(String token) {
         User user = userRepository.findById(getUserId(token))
-                .orElseThrow(() -> new UserNotFoundException("Unexpected user"));
+                .orElseThrow(() -> new IllegalArgumentException("Unexpected user"));
 
         PrincipalDetails principal = new PrincipalDetails(user);
 

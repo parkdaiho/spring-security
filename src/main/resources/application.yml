@@ -14,16 +14,23 @@ spring:
     console:
       enabled: true
 
-#  security:
-#    oauth2:
-#      client:
-#        registration:
-#          google:
-#            client-id: 880757649782-0vcbqh5hc19f9k4j70973b6sel7erlgv.apps.googleusercontent.com
-#            client-secret: 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
-#            scope:
-#              - email
-#              - profile
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 880757649782-0vcbqh5hc19f9k4j70973b6sel7erlgv.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - email
+              - profile
+
+  mvc:
+    view:
+      prefix: "/WEB-INF/views/"
+      suffix: ".jsp"
+
+    static-path-pattern:
 
 jwt:
   issuer: eogh7204@gmail.com

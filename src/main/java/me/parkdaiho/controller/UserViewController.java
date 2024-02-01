@@ -19,15 +19,15 @@ public class UserViewController {
         return "login";
     }
 
-    @GetMapping("/signup")
+    @GetMapping("/sign-up")
     public String signupPage() {
         return "signup";
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/sign-up")
     public String signup(@RequestBody AddUserRequest dto) {
         userService.createUser(dto);
 
-        return "/";
+        return "redirect:/login";
     }
 }

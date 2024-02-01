@@ -3,7 +3,6 @@ package me.parkdaiho.service;
 import lombok.RequiredArgsConstructor;
 import me.parkdaiho.config.PrincipalDetails;
 import me.parkdaiho.domain.User;
-import me.parkdaiho.exception.UserNotFoundException;
 import me.parkdaiho.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,7 +18,7 @@ public class UserDetailsCustomService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UserNotFoundException(username));
+                .orElseThrow(() -> new UsernameNotFoundException(username));
 
         return new PrincipalDetails(user);
     }

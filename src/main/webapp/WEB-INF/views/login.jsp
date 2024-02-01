@@ -15,7 +15,8 @@
 <form action="/login" method="post">
     <label for="username">id: </label> <input type="text" id="username"><br>
     <label for="password">password: </label> <input type="password" id="password"><br>
-    <button type="submit">로그인</button> <button type="button" onclick="location.href='/signup'">회원가입</button><br>
+    <button type="submit">로그인</button> <button type="button" onclick="location.href='/sign-up'">회원가입</button><br>
+    <a href="/oauth2/authorize/google"><img src="/img/google.png"></a>
 </form>
 </body>
 </html>
