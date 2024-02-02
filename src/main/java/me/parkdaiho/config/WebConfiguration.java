@@ -58,7 +58,7 @@ public class WebConfiguration {
                 .loginPage("/login")
 
                 .authorizationEndpoint()
-                .baseUri("/oauth2/authorize")
+                .baseUri("/oauth2/authorization")
                 .authorizationRequestRepository(authorizationRequestRepositoryBasedOnCookie())
                 .and()
 
@@ -67,8 +67,10 @@ public class WebConfiguration {
                 .and()
 
                 .successHandler(authorizationCustomSuccessHandler())
-                .failureHandler(authorizationCustomFailureHandler())
-                .and();
+                .failureHandler(authorizationCustomFailureHandler());
+
+        http.logout()
+                .disable();
 
         return http.build();
     }

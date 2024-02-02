@@ -17,7 +17,6 @@ public class User extends BaseEntity{
     @Column(length = 20, updatable = false, unique = true)
     private String username;
 
-    @Column(length = 20)
     private String password;
 
     @Column(length = 20, nullable = false, unique = true)
@@ -37,7 +36,7 @@ public class User extends BaseEntity{
 
     @PrePersist
     public void prePersist() {
-        this.role = this.role == null ? Role.MEMBER : this.role;
+        this.role = this.role == null ? Role.USER : this.role;
         this.isEnabled = this.isEnabled == null ? true : this.isEnabled;
     }
 
