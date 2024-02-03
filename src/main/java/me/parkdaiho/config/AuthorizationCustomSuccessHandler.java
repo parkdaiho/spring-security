@@ -27,7 +27,6 @@ public class AuthorizationCustomSuccessHandler extends SimpleUrlAuthenticationSu
     private final RefreshTokenRepository refreshTokenRepository;
     private final OAuth2AuthorizationRequestRepositoryBasedOnCookie oAuth2AuthorizationRequestRepositoryBasedOnCookie;
 
-
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         PrincipalDetails principal = (PrincipalDetails) authentication.getPrincipal();
@@ -47,6 +46,7 @@ public class AuthorizationCustomSuccessHandler extends SimpleUrlAuthenticationSu
 
     private void clearAuthenticationAttributes(HttpServletRequest request, HttpServletResponse response) {
         super.clearAuthenticationAttributes(request);
+
         oAuth2AuthorizationRequestRepositoryBasedOnCookie.removeAuthorizationRequestCookie(request, response);
     }
 

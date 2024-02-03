@@ -25,8 +25,8 @@ import static org.springframework.boot.autoconfigure.security.servlet.PathReques
 public class WebConfiguration {
 
     private final TokenProvider tokenProvider;
-    private final UserRepository userRepository;
     private final RefreshTokenRepository refreshTokenRepository;
+    private final OAuth2UserCustomService oAuth2UserCustomService;
 
     @Bean
     public WebSecurityCustomizer configure() {
@@ -63,7 +63,7 @@ public class WebConfiguration {
                 .and()
 
                 .userInfoEndpoint()
-                .userService(oAuth2UserCustomService())
+                .userService(oAuth2UserCustomService)
                 .and()
 
                 .successHandler(authorizationCustomSuccessHandler())
@@ -83,11 +83,6 @@ public class WebConfiguration {
     @Bean
     public AuthorizationCustomSuccessHandler authorizationCustomSuccessHandler() {
         return new AuthorizationCustomSuccessHandler(tokenProvider, refreshTokenRepository, authorizationRequestRepositoryBasedOnCookie());
-    }
-
-    @Bean
-    public OAuth2UserCustomService oAuth2UserCustomService() {
-        return new OAuth2UserCustomService(userRepository);
     }
 
     @Bean

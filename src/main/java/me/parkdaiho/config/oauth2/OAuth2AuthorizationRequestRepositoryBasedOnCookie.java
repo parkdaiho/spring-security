@@ -11,8 +11,8 @@ import org.springframework.web.util.WebUtils;
 public class OAuth2AuthorizationRequestRepositoryBasedOnCookie
         implements AuthorizationRequestRepository<OAuth2AuthorizationRequest> {
 
-    private final static String OAUTH2_AUTHORIZATION_REQUEST_COOKIE_NAME = "oauth2_auth_request";
-    private final static int COOKIE_EXPIRE_SECONDS = 180;
+    private final static String OAUTH2_AUTHORIZATION_REQUEST_COOKIE_NAME = "oauth2_request";
+    private final static int OAUTH2_COOKIE_EXPIRE_SECONDS = 180;
 
     @Override
     public OAuth2AuthorizationRequest loadAuthorizationRequest(HttpServletRequest request) {
@@ -24,12 +24,13 @@ public class OAuth2AuthorizationRequestRepositoryBasedOnCookie
     @Override
     public void saveAuthorizationRequest(OAuth2AuthorizationRequest authorizationRequest, HttpServletRequest request, HttpServletResponse response) {
         if(authorizationRequest == null) {
+            System.out.println(1);
             removeAuthorizationRequest(request, response);
             return;
         }
 
         CookieUtils.addCookie(response, OAUTH2_AUTHORIZATION_REQUEST_COOKIE_NAME,
-                CookieUtils.serialize(authorizationRequest), COOKIE_EXPIRE_SECONDS);
+                CookieUtils.serialize(authorizationRequest), OAUTH2_COOKIE_EXPIRE_SECONDS);
     }
 
     @Override

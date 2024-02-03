@@ -14,7 +14,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class AuthorizationCustomFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
-    private final String REDIRECT_PATH = "/oauth2/sign-up";
+    private final String REDIRECT_PATH = "/";
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
