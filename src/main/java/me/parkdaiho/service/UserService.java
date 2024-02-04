@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import me.parkdaiho.config.CookieUtils;
 import me.parkdaiho.config.oauth2.OAuth2AuthorizationRequestRepositoryBasedOnCookie;
+import me.parkdaiho.domain.OAuth2Provider;
 import me.parkdaiho.domain.User;
 import me.parkdaiho.dto.AddUserRequest;
 import me.parkdaiho.repository.UserRepository;
@@ -30,6 +31,14 @@ public class UserService {
                         .nickname(dto.getNickname())
                         .email(dto.getEmail())
                         .build()).getId();
+    }
+
+    public Long registerOAuth2User(AddUserRequest dto) {
+        return userRepository.save(User.builder()
+                .email(dto.getEmail())
+                .nickname(dto.getNickname())
+                .provider(OAuth2Provider.valueOf(dto.getProvider()))
+                .build()).getId();
     }
 
     public boolean logout(HttpServletRequest request, HttpServletResponse response) {

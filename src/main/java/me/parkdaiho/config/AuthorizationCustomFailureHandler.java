@@ -1,5 +1,6 @@
 package me.parkdaiho.config;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,7 +15,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class AuthorizationCustomFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
-    private final String REDIRECT_PATH = "/";
+    private final String REDIRECT_PATH = "/oauth2/sign-up";
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
@@ -23,6 +24,7 @@ public class AuthorizationCustomFailureHandler extends SimpleUrlAuthenticationFa
 
         request.setAttribute("oAuth2UserInfo", oAuth2UserInfo);
 
-        getRedirectStrategy().sendRedirect(request, response, REDIRECT_PATH);
+        RequestDispatcher dispatcher = request.getRequestDispatcher(REDIRECT_PATH);
+        dispatcher.forward(request, response);
     }
 }

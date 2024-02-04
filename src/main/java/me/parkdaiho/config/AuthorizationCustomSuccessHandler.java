@@ -35,7 +35,6 @@ public class AuthorizationCustomSuccessHandler extends SimpleUrlAuthenticationSu
         saveRefreshToken(refreshToken, principal.getUserId());
         addRefreshTokenToCookie(request, response, refreshToken);
 
-
         String accessToken = tokenProvider.generateToken(principal, ACCESS_TOKEN_DURATION);
         String targetUrl = getTargetUrl(accessToken);
 

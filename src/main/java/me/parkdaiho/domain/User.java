@@ -41,10 +41,11 @@ public class User extends BaseEntity{
     }
 
     @Builder
-    public User(String username, String password, String nickname, String email) {
+    public User(String username, String password, String nickname, String email, OAuth2Provider provider) {
         this.username = username;
         this.password = password;
         this.nickname = nickname;
         this.email = email;
+        this.provider = provider;
     }
 }

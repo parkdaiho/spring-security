@@ -1,14 +1,11 @@
 package me.parkdaiho.controller;
 
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import me.parkdaiho.config.oauth2.OAuth2UserInfo;
 import me.parkdaiho.dto.AddUserRequest;
 import me.parkdaiho.service.UserService;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,8 +27,25 @@ public class UserViewController {
     }
 
     @PostMapping("/sign-up")
-    public String signup(AddUserRequest dto) {
+    public String signUp(AddUserRequest dto) {
         userService.createUser(dto);
+
+        return "redirect:/login";
+    }
+
+    @GetMapping("/oauth2/sign-up")
+    public String oauth2SignUpPage(HttpServletRequest request) {
+        OAuth2UserInfo oAuth2UserInfo = (OAuth2UserInfo) request.getAttribute("oAuth2UserInfo");
+
+        request.setAttribute("email", oAuth2UserInfo.getEmail());
+        request.setAttribute("provider", oAuth2UserInfo.getProvider());
+
+        return "oauth2_signUp";
+    }
+
+    @PostMapping("/oauth2/sign-up")
+    public String oauth2SignUp(AddUserRequest dto) {
+        userService.registerOAuth2User(dto);
 
         return "redirect:/login";
     }

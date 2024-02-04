@@ -24,7 +24,6 @@ public class OAuth2AuthorizationRequestRepositoryBasedOnCookie
     @Override
     public void saveAuthorizationRequest(OAuth2AuthorizationRequest authorizationRequest, HttpServletRequest request, HttpServletResponse response) {
         if(authorizationRequest == null) {
-            System.out.println(1);
             removeAuthorizationRequest(request, response);
             return;
         }
