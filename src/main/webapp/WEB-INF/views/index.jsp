@@ -1,12 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+  <title>Title</title>
 </head>
 <body>
-<h2>홈</h2>
-<button type="button" onclick="location.href='/login'">로그인</button>
-<button type="button" id="logout">로그아웃</button>
-<script src="/js/login.js"></script>
+<h1>index</h1>
+<a href="/login">로그인</a>
+<c:if test="${userNickname != null}">
+<button type="button" id="logout-btn">${loginUser} 로그아웃</a>
+</c:if>
+<script src="/js/header.js"></script>
 </body>
 </html>

@@ -30,12 +30,11 @@ spring:
       prefix: "/WEB-INF/views/"
       suffix: ".jsp"
 
-    static-path-pattern:
-
 jwt:
   issuer: eogh7204@gmail.com
   secret-key: token-secret-key
 
+# jsp 변경 시 바로 적용
 server:
   servlet:
     jsp:
